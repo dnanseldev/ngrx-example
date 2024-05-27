@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { BookComponent } from './feature/book/book.component';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, BookComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ngrx-example';
+
+
+  private book_service = inject(BookService);
+  books$ = this.book_service.obtainBooksAPI;
+
+
+
 }
