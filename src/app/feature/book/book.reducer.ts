@@ -26,13 +26,26 @@ export const bookReducer = createReducer(
   on(bookActions.loadBooks, (curState) => {
     return {
       ...curState,
-      books: initialBooks,
+      status: BookStatus.LOADING
+    };
+  }),
+  on(bookActions.loadBooksSuccess, (curState, bookObj) => {
+    return {
+      ...curState,
+      books: bookObj.books,
+      status: BookStatus.SUCCESS
+    };
+  }),
+  on(bookActions.saveBooks, (curState, book) => {
+    return {
+      ...curState,
+      books: [...curState.books, book],
       status: BookStatus.SUCCESS
     };
   })
 );
 
-
+/* 
 const initialBooks: BookModel[] = [
   {
     id: 1,
@@ -46,4 +59,4 @@ const initialBooks: BookModel[] = [
     id: 3,
     name: 'Book 3',
   },
-];
+]; */

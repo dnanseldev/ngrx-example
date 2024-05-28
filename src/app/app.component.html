@@ -1,6 +1,16 @@
-@for (book of books$ | async; track $index) {
-<app-book [book]="book"></app-book>
-<!-- <p>{{book.name}}</p> -->
-}@empty {
-<p>No books</p>
-}
+<div class="w-1/2">
+  <div>
+    <input type="text" [(ngModel)]="bookInput" />
+    <button class="w-32 bg-cyan-700 text-white font-bold rounded-full" (click)="addBook()">Add books</button>
+  </div>
+  <div>
+    @for (book of books$ | async; track $index) {
+    <app-book [book]="book"></app-book>
+    <!-- <p>{{book.name}}</p> -->
+    }@empty {
+    <p>No books</p>
+    }
+  </div>
+
+
+</div>
